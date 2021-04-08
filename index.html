@@ -12,6 +12,12 @@
       integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
 
     <title>OnHandCooking</title>
   </head>
@@ -22,10 +28,19 @@
       <div class="grid-x grid-margin-x">
         <!-- ingredient icons container -->
         <div class="cell small-12 large-2">
+         
+        
           <!-- List for holding ingredient icons -->
-          <ul>
-          </ul>
+          <div class="callout">
+            <ul class="no-bullet">
+              <!-- These are just for testing.  They will be dynamically created and added -->
+              <li><i class="fas fa-bacon"></i></li>
+              <li><i class="fas fa-egg"></i></li>
+              <li><i class="fas fa-carrot"></i></li>
+            </ul>
+          </div>
         </div>
+        <!-- ingredients icons container -->
         <div class="cell small-12 large-10">
           <!-- Card -->
           <div class="card">
@@ -33,15 +48,22 @@
               <h2>Choose Your Ingredients</h2>
             </div>
             <div class="card-section">
-              <span>Enter an ingredient you have on hand:</span>
               <form>
-                <input type="text" id="ingredientName" name="ingredientName">
+                <input type="text" placeholder="Enter an ingredient you have on hand:" id="ingredientName" name="ingredientName">
                 <input type="submit" value="Add Ingredient"></input>
               </form>
-              
             </div>
           </div>
           <!-- card end -->
+        </div>
+      </div>
+      <!-- Container to hold recipes -->
+      <div class="grid-x recipes-container">
+        <div class="cell">
+          <!-- Placeholder for recipes -->
+          <div class="callout">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum minus, repudiandae vitae maxime sunt doloremque nihil quaerat delectus ab perferendis hic, sequi suscipit ipsam doloribus porro. Cum, accusantium id! Asperiores.
+          </div>
         </div>
       </div>
     </div>
