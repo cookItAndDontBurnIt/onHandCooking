@@ -32,11 +32,9 @@
         
           <!-- List for holding ingredient icons -->
           <div class="callout">
-            <ul class="no-bullet">
+            <ul class="no-bullet" id=ingredientList>
               <!-- These are just for testing.  They will be dynamically created and added -->
-              <li><i class="fas fa-bacon"></i></li>
-              <li><i class="fas fa-egg"></i></li>
-              <li><i class="fas fa-carrot"></i></li>
+              
             </ul>
           </div>
         </div>
@@ -48,9 +46,9 @@
               <h2>Choose Your Ingredients</h2>
             </div>
             <div class="card-section">
-              <form>
+              <form id="ingredientInput">
                 <input type="text" placeholder="Enter an ingredient you have on hand:" id="ingredientName" name="ingredientName">
-                <input type="submit" value="Add Ingredient"></input>
+                <input type="submit" value="Add Ingredient" id="ingredientSubmit"></input>
               </form>
             </div>
           </div>
@@ -73,6 +71,11 @@
       integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
       crossorigin="anonymous"
     ></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous">
+    </script>
     <script src="./assets/js/cookIt.js"></script>
   </body>
 </html>
