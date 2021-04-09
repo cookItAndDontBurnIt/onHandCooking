@@ -1,3 +1,6 @@
+$("#saveButton").on("click", function () {
+  alert("it clicked");
+});
 ingredientsArr = [];
 
 //get value from ingredientName
@@ -13,11 +16,10 @@ $('#ingredientInput').submit(function(event){
   event.preventDefault();
 });
 
-
-fetch("https://www.maps.googleapis.com/maps/api/js?key=AIzaSyBvqgE3J3k27e7smiiZAgKLa0bsGoNuHys&grocery")
- .then(function(response){
-  return response.json();
- })
- .then(function(data){
-   console.log(data);
- })
+fetch("https://edamam-recipe-search.p.rapidapi.com/search?q=chicken&320262843fmsh4a1ae8efe85b19ap1f26d7jsn8212be03ceae")
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data) {
+      console.log(data);
+  })
