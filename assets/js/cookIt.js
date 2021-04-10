@@ -1,8 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 $("#saveButton").on("click", function () {
   alert("it clicked");
 });
 =======
+=======
+$("#saveButton").on("click", function () {
+  alert("it clicked");
+});
+>>>>>>> feature/submit-ingredient
 ingredientsArr = [];
 
 //get value from ingredientName
@@ -15,6 +21,7 @@ $('#ingredientInput').submit(function(event){
   ingredientsArr.push(ingredient);
   // clear the ingredient input after a submit
   $('#ingredientName').val('');
+  spoonFetch();
   event.preventDefault();
 });
 
@@ -25,4 +32,16 @@ fetch("https://edamam-recipe-search.p.rapidapi.com/search?q=chicken&320262843fms
   .then(function(data) {
       console.log(data);
   })
+<<<<<<< HEAD
+>>>>>>> feature/submit-ingredient
+=======
+
+var spoonFetch = function(){ fetch("https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredientsArr[0] + ",+" + ingredientsArr[1] + ",+" + ingredientsArr[2] + ",+" + ingredientsArr[3] + ",+" + ingredientsArr[4] + ",+" + ingredientsArr[5] + ",+" + ingredientsArr[6] + ",+" + ingredientsArr[7] + ",+" + ingredientsArr[8] + "&apiKey=5f1feb82b9db4dad987ffd0fc801c43b")
+  .then(function(response){
+     return response.json();
+   })
+   .then(function(data){
+   console.log(data);
+   })
+};
 >>>>>>> feature/submit-ingredient
