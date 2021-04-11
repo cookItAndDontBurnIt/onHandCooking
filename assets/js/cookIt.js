@@ -31,9 +31,22 @@ function fetchRecipes() {
         .then(response => response.json())
         .then((data) => {
             console.log(data);
+
+            let recipeHTML = ``;
+
+            for (let i = 0; i < data.length; i++) {
+                recipeHTML = `${recipeHTML}<img src="${data[i].image}"> <h2> ${data[i].title} </h2>`;
+            }
+
+            $(`#recipeInnerHtml`).html(recipeHTML);
+            // data[]
             //data.image, data.title,
-            // data.
-            
-            
+            // data.usedIngredients[] / data.unusedIngredients[]:
+            //  {
+            //      amount
+            //      name,
+            //      unit
+            //}
+
         });
 }
