@@ -47,7 +47,10 @@ var generateMap = function(){
     // assign zipcode value to a variable
     zipCode = $('#zipCodeInput').val();
     // call the google embed maps api to create an iframe user the query grocery+near+zipcode, center on lat and long coordinates, and zoom level 10
-    mapContainerEl.html(`<iframe width='450' height='250' frameborder='0' style='border:0' src= 'https://www.google.com/maps/embed/v1/search?key=AIzaSyBvqgE3J3k27e7smiiZAgKLa0bsGoNuHys&q=grocery+near+${zipCode}&center=${lat},${long}&zoom=10' allowfullscreen> </iframe>`)
+    mapContainerEl.html(`<iframe width='450' height='250' frameborder='0' style='border:0' src= 'https://www.google.com/maps/embed/v1/search?key=AIzaSyBvqgE3J3k27e7smiiZAgKLa0bsGoNuHys&q=grocery+near+${zipCode}&center=${lat},${long}&zoom=10' allowfullscreen> </iframe>`);
+    // create a div element with id of drive safe
+    $('#driveSafeContainer')
+      .append("<span>Drive<br>Safe!</span>");
   })
 };
 // event listener to generate map on zipcode submit
