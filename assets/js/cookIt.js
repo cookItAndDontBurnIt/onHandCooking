@@ -32,13 +32,35 @@ function fetchRecipes() {
         .then((data) => {
             console.log(data);
 
-            let recipeHTML = ``;
+            let recipeHTML = `<ul class="tabs" data-responsive-accordion-tabs="tabs medium-accordion large-tabs" id="recipe-tabs">`;
+            for (let i = 0; i < data.length; i++) {
+                if (i == 0) {
+                    recipeHTML = `${recipeHTML}<li class="tabs-title is-active"><a href="#panel0" aria-selected="true">${data[0].title}</a></li>`;
+                } else {
+                    recipeHTML = `${recipeHTML}<li class="tabs-title"><a href="#panel${i}">${data[i].title}</a></li>`;
+                }
+            }
+            recipeHTML = `${recipeHTML}</ul>`;
+            recipeHTML = `${recipeHTML}<div class="tabs-content" data-tabs-content="recipe-tabs">`;
 
             for (let i = 0; i < data.length; i++) {
-                recipeHTML = `${recipeHTML}<img src="${data[i].image}"> <h2> ${data[i].title} </h2>`;
+                if (i == 0) {
+                    recipeHTML = `${recipeHTML}
+                    <div class="tabs-panel is-active" id="panel${i}">
+                        <h2> ${data[i].title} </h2>
+                        <img class="thumbnail" src="${data[i].image}">
+                    </div>`;
+                } else {
+                    recipeHTML = `${recipeHTML}
+                    <div class="tabs-panel" id="panel${i}">
+                        <h2> ${data[i].title} </h2>
+                        <img class="thumbnail" src="${data[i].image}">
+                    </div>`;
+                }
             }
-
+            recipeHTML = `${recipeHTML}</div>`;
             $(`#recipeInnerHtml`).html(recipeHTML);
+            $(document).foundation();
             // data[]
             //data.image, data.title,
             // data.usedIngredients[] / data.unusedIngredients[]:
