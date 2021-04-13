@@ -86,10 +86,20 @@
     
       <div class="grid-x grid-margin-x">
         <div class="cell small-4">
-          <span>Need help buying your ingredients!</span>
+          <span>
+            Need help buying your ingredients!
+            <br>Or<br>
+            If you burnt it, find a restaurant!
+          </span>
+          <div class="switch" id="switchContainer">
+            <input class="switch-input" id="grocery-or-restaurant" type="checkbox" name="grocery-or-restaurant">
+            <label class="switch-paddle" for="grocery-or-restaurant">
+              <span class="show-for-sr">Grocery or Restaurant</span>
+            </label>
+          </div>
           <form id=zipCodeForm>
-            <input type="text" id="zipCodeInput" name="zipCodeInput">
-            <input type="submit" value="Find Stores">
+            <input type="text" id="zipCodeInput" name="zipCodeInput" placeholder="Enter Zipcode">
+            <input id="zipSubmitBtn" type="submit" value="Find Stores">
           </form>
         </div>
         <div class="cell small-6">
