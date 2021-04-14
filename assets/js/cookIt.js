@@ -1,4 +1,4 @@
-const ingredientsArr = ["apple", "corn", "feta cheese"];
+const ingredientsArr = ["apple", "corn", "cheese"];
 const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 
@@ -26,9 +26,11 @@ function fetchRecipes() {
       finalURL = `${finalURL}${ingredientsArr[i]},+`;
     }
   }
-  fetch(finalURL)
+  console.log(finalURL);
+  fetch(`${finalURL}&addRecipeInformation=true`)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       displayRecipes(data);
       // data[]
       //data.image, data.title,
@@ -38,6 +40,24 @@ function fetchRecipes() {
       //      name,
       //      unit
       //}
+
+      let id = data[1].id;
+      console.log(id);
+      fetch(
+        `https://api.spoonacular.com/recipes/${id}/analyzedInstructions?&apiKey=${apiKey}`
+      )
+        .then(function (response) {
+          console.log(response);
+          return response.json();
+        })
+        .then(function (steps) {
+          console.log(steps);
+
+          for (var i = 0; i < steps[0].steps.length; i++) {
+            console.log(steps[0].steps[i].step);
+          }
+          //   return steps;
+        });
     });
 }
 
