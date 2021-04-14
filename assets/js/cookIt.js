@@ -1,5 +1,5 @@
 const ingredientsArr = ["apple", "corn", "cheese"];
-const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
+const apiKey = "cb3bc54293df04bdfb125e107548ef2c9"; //"5f1feb82b9db4dad987ffd0fc801c43b";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 
 //get value from ingredientName
@@ -43,29 +43,36 @@ function fetchRecipes() {
 
       let id = data[1].id;
       console.log(id);
-      fetch(
-        `https://api.spoonacular.com/recipes/${id}/analyzedInstructions?&apiKey=${apiKey}`
-      )
-        .then(function (response) {
-          console.log(response);
-          return response.json();
-        })
-        .then(function (steps) {
-          console.log(steps);
-
-          for (var i = 0; i < steps[0].steps.length; i++) {
-            console.log(steps[0].steps[i].step);
-          }
-          //   return steps;
-        });
     });
 }
+
+var getRecipeSteps = function (id) {
+  var recipeSteps = [];
+  fetch(
+    `https://api.spoonacular.com/recipes/${id}/analyzedInstructions?&apiKey=${apiKey}`
+  )
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (steps) {
+      console.log(steps);
+
+      for (var i = 0; i < steps[0].steps.length; i++) {
+        console.log(steps[0].steps[i].step);
+        recipeSteps.push(steps[0].steps[i].step);
+      }
+      //   return steps;
+    });
+  return recipeSteps;
+};
 
 var displayRecipes = function (data) {
   console.log(data);
 
   let recipeHTML = `<ul class="tabs" data-responsive-accordion-tabs="tabs medium-accordion large-tabs" id="recipe-tabs">`;
   for (let i = 0; i < data.length; i++) {
+    var stepsArray = getRecipeSteps(data[i].id);
     if (i == 0) {
       recipeHTML = `${recipeHTML}<li class="tabs-title is-active"><a href="#panel0" aria-selected="true">${data[0].title}</a></li>`;
     } else {
@@ -76,17 +83,27 @@ var displayRecipes = function (data) {
   recipeHTML = `${recipeHTML}<div class="tabs-content" data-tabs-content="recipe-tabs">`;
 
   for (let i = 0; i < data.length; i++) {
+    var stepsListEl = $("<ul>");
+
+    for (let i = 0; i < stepsArray.length; i++) {
+      var liEl = `<li class=recipe-step id=${i}> ${stepsArray[i]}</li> `;
+      stepsListEl.append(liEl);
+    }
+
     if (i == 0) {
       recipeHTML = `${recipeHTML}
-                    <div class="tabs-panel is-active" id="panel${i}">
+                    <div class="tabs-panel is-active" id="panel${i} recipeId=${data[i].id}">
                         <h2> ${data[i].title} </h2>
                         <img class="thumbnail" src="${data[i].image}">
+                        ${stepsListEl}
                     </div>`;
     } else {
       recipeHTML = `${recipeHTML}
-                    <div class="tabs-panel" id="panel${i}">
+                    <div class="tabs-panel" id="panel${i} recipeId=${data[i].id}">
                         <h2> ${data[i].title} </h2>
                         <img class="thumbnail" src="${data[i].image}">
+                        ${stepsListEl}
+
                     </div>`;
     }
   }
