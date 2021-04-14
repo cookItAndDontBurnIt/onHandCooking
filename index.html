@@ -1,85 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/seasonIt.css" />
-    <!-- Compressed CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
-      integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-    />
 
-    <title>OnHandCooking</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/seasonIt.css" />
+  <!-- Compressed CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
 
-  <body> 
-    <header>
-        <div data-sticky-container>
-          <div data-sticky data-margin-top="0">
-            <div class="top-bar stacked-for-large">
-              <h1>OnHandCooking<small> Let's search it</small></h1>
-              <div class="top-bar-right">
-                <ul class="menu">
-                  <li>
-                    <button type="button" class="button warning" id="saveButton">
-                      Saved Recepies
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main>
-    <div class="grid-container">
-      <div class="grid-x grid-margin-x">
-        <!-- ingredient icons container -->
-        <div class="cell small-12 large-2">
-         
-        
-          <!-- List for holding ingredient icons -->
-          <div class="callout">
-            <ul class="no-bullet" id=ingredientList>
-              <!-- These are just for testing.  They will be dynamically created and added -->
-              
-            </ul>
-          </div>
-        </div>
-        <!-- ingredients icons container -->
-        <div class="cell small-12 large-10">
-          <!-- Card -->
-          <div class="card">
-            <div class="card-divider">
-              <h2>Choose Your Ingredients</h2>
-            </div>
-            <div class="card-section">
-              <form id="ingredientInput">
-                <input type="text" placeholder="Enter an ingredient you have on hand:" id="ingredientName" name="ingredientName">
-                <input type="submit" value="Add Ingredient" id="ingredientSubmit"></input>
-              </form>
-            </div>
-          </div>
-          <!-- card end -->
+  <title>OnHandCooking</title>
+</head>
+
+<body>
+  <h1>OnHandCooking</h1>
+
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+      <!-- ingredient icons container -->
+      <div class="cell small-12 large-2">
+
+
+        <!-- List for holding ingredient icons -->
+        <div class="callout">
+          <ul class="no-bullet" id=ingredientList>
+            <!-- These are just for testing.  They will be dynamically created and added -->
+
+          </ul>
         </div>
       </div>
-      <!-- Container to hold recipes -->
-      <div class="grid-x recipes-container">
-        <div class="cell">
-          <!-- Placeholder for recipes -->
-          <div class="callout">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum minus, repudiandae vitae maxime sunt doloremque nihil quaerat delectus ab perferendis hic, sequi suscipit ipsam doloribus porro. Cum, accusantium id! Asperiores.
+      <!-- ingredients icons container -->
+      <div class="cell small-12 large-10">
+        <!-- Card -->
+        <div class="card">
+          <div class="card-divider">
+            <h2>Choose Your Ingredients</h2>
           </div>
+          <div class="card-section">
+
+            <input type="text" placeholder="Enter an ingredient you have on hand:" id="ingredientName"
+              name="ingredientName">
+            <input type="submit" value="Add Ingredient" id="ingredientSubmit"></input>
+
+          </div>
+        </div>
+        <!-- card end -->
+      </div>
+    </div>
+    <!-- Container to hold recipes -->
+    <div class="grid-x recipes-container">
+      <div class="cell">
+        <!-- Placeholder for recipes -->
+        <div class="callout" id="recipeInnerHtml">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum minus, repudiandae vitae maxime sunt doloremque
+          nihil quaerat delectus ab perferendis hic, sequi suscipit ipsam doloribus porro. Cum, accusantium id!
+          Asperiores.
         </div>
       </div>
     
@@ -110,28 +89,17 @@
         </div>
       </div>
     </div>
-
-    </main>
-
-    <!-- Compressed JavaScript -->
-    <footer>
-      <!--we should maybe add are teams contact info at the footer-->
-      <div>
-        <h5>Thank you for cooking<small> or burning</small> with us!</h5>
-      </div>
-    </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
-      integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
-      crossorigin="anonymous"
-    ></script>
+  </div>
+  <!-- Compressed JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+    integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 
 
-    <script src="./assets/js/cookIt.js"></script>
-  </body>
+  <script src="./assets/js/cookIt.js"></script>
+</body>
+
 </html>
