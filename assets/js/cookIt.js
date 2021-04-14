@@ -1,5 +1,5 @@
 const ingredientsArr = ["apple", "corn", "cheese"];
-const apiKey = "cb3bc54293df04bdfb125e107548ef2c9"; //"5f1feb82b9db4dad987ffd0fc801c43b";
+const apiKey = "b3bc54293df04bdfb125e107548ef2c9"; //"5f1feb82b9db4dad987ffd0fc801c43b";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 
 //get value from ingredientName
