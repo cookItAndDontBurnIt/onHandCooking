@@ -1,6 +1,10 @@
 const ingredientsArr = ["apple", "corn", "cheese"];
-const apiKey = "d0adbcaa34cb468685be83f497a1e9e2"; //"b3bc54293df04bdfb125e107548ef2c9";second api key from marc //"5f1feb82b9db4dad987ffd0fc801c43b"; first api key from shay
+//"b3bc54293df04bdfb125e107548ef2c9";  api key from marc
+//"5f1feb82b9db4dad987ffd0fc801c43b";  api key from shay
+//"d0adbcaa34cb468685be83f497a1e9e2"; api key from allan
+const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
+const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
 
 //get value from ingredientName
 $("#ingredientSubmit").click(function (event) {
@@ -18,7 +22,7 @@ $("#ingredientSubmit").click(function (event) {
 });
 
 function fetchRecipes() {
-  let finalURL = baseUrl;
+  let finalURL = testUrl;
   for (let i = 0; i < ingredientsArr.length; i++) {
     if (i == ingredientsArr.length - 1) {
       finalURL = `${finalURL}${ingredientsArr[i]}`;
@@ -57,19 +61,21 @@ var getRecipeSteps = function (id) {
     .then(function (steps) {
       if (steps[0] === null || steps[0] === undefined) {
         console.log("its empty");
+        return false;
       } else {
         for (var i = 0; i < steps[0].steps.length; i++) {
           // console.log(id);
           // console.log(steps[0].steps[i].step);
           recipeSteps.push(steps[0].steps[i].step);
         }
+        return recipeSteps;
       }
-      return recipeSteps;
       //   return steps;
     });
 };
 
 var dummyArr = ["lorem 1", "lorem 2", "lorem 3 ", "lorem 4"];
+var mainStepsArr = [];
 
 var displayRecipes = function (data) {
   console.log(data);
@@ -103,11 +109,20 @@ var displayRecipes = function (data) {
 
   recipeHTML = `${recipeHTML}</div>`;
   $(`#recipeInnerHtml`).html(recipeHTML);
+  displaySteps(data);
 
+  $(document).foundation();
+  //clear array for next recipe to be used
+};
+
+// a function that will display the steps of each recipe to the recipe cards
+var displaySteps = function (data) {
   for (let i = 0; i < data.length; i++) {
     var stepsArray = getRecipeSteps(data[i].id);
+    mainStepsArr.push(stepsArray);
     var stepsListEl = $("<ul>");
     console.log(stepsArray);
+    console.log(mainStepsArr);
 
     if (stepsArray) {
       for (let i = 0; i < stepsArray.length; i++) {
@@ -126,8 +141,6 @@ var displayRecipes = function (data) {
     $(`#panel${i}`).append(stepsListEl);
     stepsArray = [];
   }
-  $(document).foundation();
-  //clear array for next recipe to be used
 };
 
 // function to generate a map
