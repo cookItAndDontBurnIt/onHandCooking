@@ -25,7 +25,7 @@
           <div class="top-bar-right">
             <ul class="menu">
               <li>
-                <button type="button" class="button warning" id="saveButton">
+                <button type="button" class="button warning" id="saveButton" data-open="savedRecipesModal">
                   Saved Recepies
                 </button>
               </li>
@@ -108,6 +108,13 @@
       <div class="cell small-2" id="driveSafeContainer">
       </div>
     </div>
+  </div>
+
+  <div class="reveal" id="savedRecipesModal" data-reveal>
+    <div class="savedRecipesContainer"></div>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 
   </main>
