@@ -6,6 +6,9 @@ var ingredientsArr = [];
 const apiKey = "d0adbcaa34cb468685be83f497a1e9e2";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
+const emojiAPIkey = `e1432e0eadfb00f31067af6479944e19744cbfe2`;
+const emojiURL = `https://emoji-api.com/emojis?access_key=${emojiAPIkey}&search=`;
+
 var savedRecipesArr = [];
 var savedRecipeCount = 0;
 $(document).foundation();
@@ -44,7 +47,9 @@ $("#ingredientSubmit").click(function (event) {
   // set value of the ingredient input to a variable
   const ingredient = $("#ingredientName").val();
   // append that ingredient to the list on the page
-  $("#ingredientList").append("<li>" + ingredient + "</li>");
+  fetch(`${emojiURL}${ingredient}`).then((response) => response.json()).then((emojiResponseData) => {
+    $("#ingredientList").append(`<li> ${ingredient}${emojiResponseData[0].character} </li>`);
+  });
   // push the ingredient to an array
   ingredientsArr.push(ingredient);
   // clear the ingredient input after a submit and disable button
