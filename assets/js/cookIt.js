@@ -3,17 +3,41 @@ const ingredientsArr = [];
 //"5f1feb82b9db4dad987ffd0fc801c43b";  api key from shay
 //"d0adbcaa34cb468685be83f497a1e9e2"; api key from allan
 // "2e4b6bc5d6184e9e8b5c439802aea9ef" forth api key
-const apiKey = "d0adbcaa34cb468685be83f497a1e9e2";
+const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
+var savedRecipesArr = [];
+var savedRecipeCount = 0;
 $(document).foundation();
 
 var loadRecipes = function(){
-  $('.savedRecipesContainer').html(localStorage.getItem('div'));
+  savedRecipesArr = [];
+  savedRecipes = [];
+  var savedRecipes = localStorage.getItem('recipes');
+  
+  if (!savedRecipes) {
+    return false;
+  }
+  else{
+  console.log("Saved tasks found!");
+  // parse into array of objects
+  savedRecipes = JSON.parse(savedRecipes);
+  // loop through savedRecipes array
+  for (var i = 0; i < savedRecipes.length; i++) {
+    $('<div>').attr('class', 'saved-recipe')
+      .html(savedRecipes[i])
+      .appendTo($('.savedRecipesContainer'));
+    $('.savedRecipesContainer button').remove();
+  }
+  savedRecipes = [];
+  }
 };
-
-
-loadRecipes();
+//saved recipes event listener
+$('#saveButton').on('click', loadRecipes);
+//closing modal event listener
+$('#closeX').on('click', function(){
+  $('.savedRecipesContainer').html('');
+});
 
 //get value from ingredientName
 $("#ingredientSubmit").click(function (event) {
@@ -115,30 +139,26 @@ var displayRecipes = function (data) {
   getRecipeSteps(recipeIdArr);
   recipeIdArr = [];
   
-  for (let i = 0; i < data.length; i++){
-    $(`#saveBtn${i}`).on('click', function(){
-      console.log(`button${i} has clicked`);
-      console.log(data);
-      localStorage.setItem('div', document.getElementById(`panel${data[i].id}`).innerHTML )
-    })
-  }
-  
+  $(`#saveBtn0`).on('click', function(){
+    savedRecipesArr.push(document.getElementById(`panel${data[0].id}`).innerHTML)
+    console.log(savedRecipesArr);
+    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
+  });
+
+  $(`#saveBtn1`).on('click', function(){
+    savedRecipesArr.push(document.getElementById(`panel${data[1].id}`).innerHTML)
+    console.log(savedRecipesArr);
+    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
+  });
+
+  $(`#saveBtn2`).on('click', function(){
+    savedRecipesArr.push(document.getElementById(`panel${data[2].id}`).innerHTML)
+    console.log(savedRecipesArr);
+    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
+  });
 
   $(document).foundation();
-  //clear array for next recipe to be used
 };
-
-// saved recipes function
-
-  
-  // localStorage.setItem('')
-
-
-// event listener for save recipes button
-// $('#saveBtn0').on('click', function(){
-//   console.log("saveBtn Clicked")
-//   saveRecipes();
-// })
 
 // function to generate a map
 var generateMap = function () {
@@ -213,8 +233,6 @@ $("#grocery-or-restaurant").change(function () {
     $("#zipSubmitBtn").attr("value", "Find Stores");
   }
 });
-
-
 
 // event listener to generate map on zipcode submit
 $("#zipCodeForm").submit(function (event) {
