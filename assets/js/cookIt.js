@@ -137,7 +137,9 @@ var getRecipeIngredients = function (arr) {
           console.log(data.ingredients.length)
           for (var j = 0; j < data.ingredients.length; j++) {
             $(`#panel${arr[j]} .ingredients-container`).append(
-              `<li>${data.ingredients[j].amount.us.value} ${data.ingredients[j].amount.us.unit}  ${data.ingredients[j].name}</li>
+              `<li>${data.ingredients[j].amount.us.value} ${data.ingredients[j].amount.us.unit}  ${data.ingredients[j].name} 
+                <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.ingredients[j].image}"/>
+              </li>
                `
             );
           }
