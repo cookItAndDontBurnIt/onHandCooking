@@ -7,7 +7,7 @@ body {
 }
 
 .top-bar {
-  background:palegreen;
+  background: #434144;
 }
 
 .top-bar h1 {
@@ -15,7 +15,7 @@ body {
 }
 
 .card-divider {
-  background: palegreen;
+  background: #339966;
 }
 
 h1 small {
@@ -25,6 +25,7 @@ h1 small {
 .card-divider h2 {
   color: rebeccapurple;
   text-align: center;
+  text-shadow: 1px 1px 3px #434144;
 }
 
 footer small {
@@ -69,10 +70,6 @@ footer {
 
 .btn {
   font-weight: bold;
-}
-
-#ingredientSubmtit {
-  background-color: blue;
 }
 
 #ingredients {
