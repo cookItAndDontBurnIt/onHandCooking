@@ -3,39 +3,39 @@ var ingredientsArr = [];
 //"5f1feb82b9db4dad987ffd0fc801c43b";  api key from shay
 //"d0adbcaa34cb468685be83f497a1e9e2"; api key from allan
 // "2e4b6bc5d6184e9e8b5c439802aea9ef" forth api key
-const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
+const apiKey = "d0adbcaa34cb468685be83f497a1e9e2";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
 var savedRecipesArr = [];
 var savedRecipeCount = 0;
 $(document).foundation();
 
-var loadRecipes = function(){
+var loadRecipes = function () {
   savedRecipesArr = [];
   savedRecipes = [];
   var savedRecipes = localStorage.getItem('recipes');
-  
+
   if (!savedRecipes) {
     return false;
   }
-  else{
-  console.log("Saved tasks found!");
-  // parse into array of objects
-  savedRecipes = JSON.parse(savedRecipes);
-  // loop through savedRecipes array
-  for (var i = 0; i < savedRecipes.length; i++) {
-    $('<div>').attr('class', 'saved-recipe')
-      .html(savedRecipes[i])
-      .appendTo($('.savedRecipesContainer'));
-    $('.savedRecipesContainer button').remove();
-  }
-  savedRecipes = [];
+  else {
+    console.log("Saved tasks found!");
+    // parse into array of objects
+    savedRecipes = JSON.parse(savedRecipes);
+    // loop through savedRecipes array
+    for (var i = 0; i < savedRecipes.length; i++) {
+      $('<div>').attr('class', 'saved-recipe')
+        .html(savedRecipes[i])
+        .appendTo($('.savedRecipesContainer'));
+      $('.savedRecipesContainer button').remove();
+    }
+    savedRecipes = [];
   }
 };
 //saved recipes event listener
 $('#saveButton').on('click', loadRecipes);
 //closing modal event listener
-$('#closeX').on('click', function(){
+$('#closeX').on('click', function () {
   $('.savedRecipesContainer').html('');
 });
 
@@ -93,7 +93,7 @@ function fetchRecipes() {
 }
 
 var getRecipeSteps = function (arr) {
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     fetch(
       `https://api.spoonacular.com/recipes/${arr[i]}/analyzedInstructions?&apiKey=${apiKey}`
     )
@@ -107,9 +107,9 @@ var getRecipeSteps = function (arr) {
           $(`#panel${arr[i]}`).append("<span> no cigar</span>");
           return;
         } else {
-          for (var i = 0; i < steps[0].steps.length; i++) {
+          for (let j = 0; j < steps[0].steps.length; j++) {
             $(`#panel${arr[i]}`).append(
-              "<li>" + steps[0].steps[i].step + "</li>"
+              "<li>" + steps[0].steps[j].step + "</li>"
             );
           }
         }
@@ -190,20 +190,20 @@ var displayRecipes = function (data) {
   getRecipeSteps(recipeIdArr);
   getRecipeIngredients(recipeIdArr);
   recipeIdArr = [];
-  
-  $(`#saveBtn0`).on('click', function(){
+
+  $(`#saveBtn0`).on('click', function () {
     savedRecipesArr.push(document.getElementById(`panel${data[0].id}`).innerHTML)
     console.log(savedRecipesArr);
     localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
   });
 
-  $(`#saveBtn1`).on('click', function(){
+  $(`#saveBtn1`).on('click', function () {
     savedRecipesArr.push(document.getElementById(`panel${data[1].id}`).innerHTML)
     console.log(savedRecipesArr);
     localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
   });
 
-  $(`#saveBtn2`).on('click', function(){
+  $(`#saveBtn2`).on('click', function () {
     savedRecipesArr.push(document.getElementById(`panel${data[2].id}`).innerHTML)
     console.log(savedRecipesArr);
     localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
