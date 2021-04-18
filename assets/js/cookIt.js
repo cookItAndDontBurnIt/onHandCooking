@@ -3,7 +3,7 @@ var ingredientsArr = [];
 //"5f1feb82b9db4dad987ffd0fc801c43b";  api key from shay
 //"d0adbcaa34cb468685be83f497a1e9e2"; api key from allan
 // "2e4b6bc5d6184e9e8b5c439802aea9ef" forth api key
-const apiKey = "2e4b6bc5d6184e9e8b5c439802aea9ef";
+const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
 var savedRecipesArr = [];
@@ -117,6 +117,35 @@ var getRecipeSteps = function (arr) {
   }
 };
 
+var getRecipeIngredients = function (arr) {
+  console.log(arr);
+  for (var i = 0; i < arr.length; i++) {
+    fetch(
+      `https://api.spoonacular.com/recipes/${arr[i]}/ingredientWidget.json?&apiKey=${apiKey}`
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        if (data.length === 0) {
+          console.log("its empty");
+          $(`#panel${arr[i]}`).append("<span> no cigar</span>");
+          return;
+        } else {
+          console.log(data.ingredients[0].name)
+          console.log(data.ingredients.length)
+          for (var j = 0; j < data.ingredients.length; j++) {
+            $(`#panel${arr[j]} .ingredients-container`).append(
+              `<li>${data.ingredients[j].amount.us.value} ${data.ingredients[j].amount.us.unit}  ${data.ingredients[j].name}</li>
+               `
+            );
+          }
+        }
+      });
+  }
+};
+
 var recipeIdArr = [];
 
 var displayRecipes = function (data) {
@@ -138,6 +167,7 @@ var displayRecipes = function (data) {
                         <h2> ${data[i].title} </h2>
                         <img class="thumbnail" src="${data[i].image}">
                         <div class="steps-container">  </div>
+                        <ul class="ingredients-container"></ul>
                         <button type='button' class='button' id='saveBtn${i}'>Save Recipe</button> 
                     </div>`;
     } else {
@@ -146,6 +176,7 @@ var displayRecipes = function (data) {
                         <h2> ${data[i].title} </h2>
                         <img class="thumbnail" src="${data[i].image}">
                         <div class="steps-container">  </div>
+                        <ul class="ingredients-container"></ul>
                         <button type='button' class='button' id='saveBtn${i}'>Save Recipe</button> 
                     </div>`;
     }
@@ -157,6 +188,7 @@ var displayRecipes = function (data) {
 
   //print the steps to the dom
   getRecipeSteps(recipeIdArr);
+  getRecipeIngredients(recipeIdArr);
   recipeIdArr = [];
   
   $(`#saveBtn0`).on('click', function(){
