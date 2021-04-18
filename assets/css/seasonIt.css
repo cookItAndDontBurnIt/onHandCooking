@@ -1,7 +1,63 @@
 body {
-  /* background-color: lightgray !important;
-  color: rebeccapurple !important; */
+  background: lightgray !important;
+  color: rebeccapurple !important;
+  font-family:Arial, Helvetica, sans-serif;
+  /* background-image: url("../images/cutting-board.png");
+  background-size: cover; */
 }
+
+.top-bar {
+  background:palegreen;
+}
+
+.top-bar h1 {
+  text-shadow: 1px 1px 4px black; 
+}
+
+.card-divider {
+  background: palegreen;
+}
+
+h1 small {
+  color: #339966;
+}
+
+.card-divider h2 {
+  color: rebeccapurple;
+  text-align: center;
+}
+
+footer small {
+  color: #339966;
+}
+
+.recipes-container {
+  background: #434144;
+}
+
+.card-section {
+  background: #434144;
+}
+
+#mapDiv {
+  background: #434144;
+}
+
+#mapDiv span {
+  font-size: 18px;
+  color: lightgray;
+}
+
+#recipeInnerHtml {
+  background: lightgray;
+  font-size: 18px;
+}
+
+#driveSafeContainer {
+  align-items: center;
+  font-size: larger;
+}
+
 main {
   padding: 80px 0;
 }
@@ -13,6 +69,10 @@ footer {
 
 .btn {
   font-weight: bold;
+}
+
+#ingredientSubmtit {
+  background-color: blue;
 }
 
 #ingredients {

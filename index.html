@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/seasonIt.css" />
+    <!-- <link rel="stylesheet" href="./assets/css/seasonIt.css" /> -->
     <!-- Compressed CSS -->
     <link
       rel="stylesheet"
@@ -18,6 +18,7 @@
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./assets/css/seasonIt.css" />
     <title>OnHandCooking</title>
   </head>
 
@@ -82,7 +83,7 @@
                 </div>
               </div>
             </div>
-            <div class="grid-x grid-margin-x">
+            <div class="grid-x grid-margin-x" id="mapDiv">
               <div class="cell small-4">
                 <span>
                   Need help buying your ingredients!
@@ -110,10 +111,10 @@
                   <input id="zipSubmitBtn" type="submit" class="button success" value="Find Stores" />
                 </form>
               </div>
-              <div class="cell small-6">
+              <div class="cell small-6 flex-container">
                 <div id="mapContainer"></div>
               </div>
-              <div class="cell small-2" id="driveSafeContainer"></div>
+              <div class="cell small-2 flex-container align-center" id="driveSafeContainer"></div>
             </div>
           </div>
         </div>
