@@ -21,6 +21,7 @@
     <title>OnHandCooking</title>
   </head>
 
+
   <body>
     <header>
       <div data-sticky-container>
@@ -30,7 +31,7 @@
             <div class="top-bar-right">
               <ul class="menu stacked-for-medium">
                 <li >
-                  <button type="button" class="button warning btn tiny" id="saveButton">
+                  <button type="button" class="button warning btn tiny" id="saveButton" data-open="savedRecipesModal">
                     Saved Recepies
                   </button>
                 </li>
@@ -119,6 +120,13 @@
       </div>
       <!-- Container to hold recipes -->
     </main>
+
+    <div class="reveal large" id="savedRecipesModal" data-reveal>
+      <div class="savedRecipesContainer"></div>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span id="closeX" aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
     <footer>
       <!--we should maybe add are teams contact info at the footer-->
