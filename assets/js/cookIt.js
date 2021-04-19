@@ -3,7 +3,7 @@ var ingredientsArr = [];
 //"5f1feb82b9db4dad987ffd0fc801c43b";  api key from shay
 //"d0adbcaa34cb468685be83f497a1e9e2"; api key from allan
 // "2e4b6bc5d6184e9e8b5c439802aea9ef" forth api key
-const apiKey = "d0adbcaa34cb468685be83f497a1e9e2";
+const apiKey = "2e4b6bc5d6184e9e8b5c439802aea9ef";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
 const emojiAPIkey = `e1432e0eadfb00f31067af6479944e19744cbfe2`;
