@@ -3,13 +3,17 @@ var ingredientsArr = [];
 //"5f1feb82b9db4dad987ffd0fc801c43b";  api key from shay
 //"d0adbcaa34cb468685be83f497a1e9e2"; api key from allan
 // "2e4b6bc5d6184e9e8b5c439802aea9ef" forth api key
-const apiKey = "5f1feb82b9db4dad987ffd0fc801c43b";
+const apiKey = "2e4b6bc5d6184e9e8b5c439802aea9ef";
 const baseUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=`;
 const testUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&number=3&ingredients=`;
+const emojiAPIkey = `e1432e0eadfb00f31067af6479944e19744cbfe2`;
+const emojiURL = `https://emoji-api.com/emojis?access_key=${emojiAPIkey}&search=`;
+
 var savedRecipesArr = [];
 var savedRecipeCount = 0;
 $(document).foundation();
 
+<<<<<<< HEAD
 var loadRecipes = function(){
   var savedRecipes = localStorage.getItem('recipes');
   
@@ -27,13 +31,39 @@ var loadRecipes = function(){
     $('.savedRecipesContainer button').remove();
   }
   savedRecipes = [];
+=======
+var loadRecipes = function () {
+  savedRecipesArr = [];
+  savedRecipes = [];
+  var savedRecipes = localStorage.getItem('recipes');
+
+  if (!savedRecipes) {
+    return false;
+  }
+  else {
+    console.log("Saved tasks found!");
+    // parse into array of objects
+    savedRecipes = JSON.parse(savedRecipes);
+    // loop through savedRecipes array
+    for (var i = 0; i < savedRecipes.length; i++) {
+      $('<div>').attr('class', 'saved-recipe')
+        .html(savedRecipes[i])
+        .appendTo($('.savedRecipesContainer'));
+      $('.savedRecipesContainer button').remove();
+    }
+    savedRecipes = [];
+>>>>>>> feature/ingredient-icon
   }
 };
 //saved recipes event listener
 $('#saveButton').on('click', loadRecipes);
 //closing modal event listener
+<<<<<<< HEAD
 
 $('#closeX').on('click', function(){
+=======
+$('#closeX').on('click', function () {
+>>>>>>> feature/ingredient-icon
   $('.savedRecipesContainer').html('');
 })
 
@@ -46,7 +76,9 @@ $("#ingredientSubmit").click(function (event) {
   // set value of the ingredient input to a variable
   const ingredient = $("#ingredientName").val();
   // append that ingredient to the list on the page
-  $("#ingredientList").append("<li>" + ingredient + "</li>");
+  fetch(`${emojiURL}${ingredient}`).then((response) => response.json()).then((emojiResponseData) => {
+    $("#ingredientList").append(`<li> ${ingredient}${emojiResponseData[0].character} </li>`);
+  });
   // push the ingredient to an array
   ingredientsArr.push(ingredient);
   // clear the ingredient input after a submit and disable button
@@ -95,7 +127,7 @@ function fetchRecipes() {
 }
 
 var getRecipeSteps = function (arr) {
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     fetch(
       `https://api.spoonacular.com/recipes/${arr[i]}/analyzedInstructions?&apiKey=${apiKey}`
     )
@@ -109,9 +141,9 @@ var getRecipeSteps = function (arr) {
           $(`#panel${arr[i]}`).append("<span> no cigar</span>");
           return;
         } else {
-          for (var i = 0; i < steps[0].steps.length; i++) {
+          for (let j = 0; j < steps[0].steps.length; j++) {
             $(`#panel${arr[i]}`).append(
-              "<li>" + steps[0].steps[i].step + "</li>"
+              "<li>" + steps[0].steps[j].step + "</li>"
             );
           }
         }
@@ -139,7 +171,9 @@ var getRecipeIngredients = function (arr) {
           console.log(data.ingredients.length)
           for (var j = 0; j < data.ingredients.length; j++) {
             $(`#panel${arr[j]} .ingredients-container`).append(
-              `<li>${data.ingredients[j].amount.us.value} ${data.ingredients[j].amount.us.unit}  ${data.ingredients[j].name}</li>
+              `<li>${data.ingredients[j].amount.us.value} ${data.ingredients[j].amount.us.unit}  ${data.ingredients[j].name} 
+                <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.ingredients[j].image}"/>
+              </li>
                `
             );
           }
@@ -191,6 +225,7 @@ var displayRecipes = function (data) {
   getRecipeSteps(recipeIdArr);
   getRecipeIngredients(recipeIdArr);
   recipeIdArr = [];
+<<<<<<< HEAD
   
   $(document).foundation();
 };
@@ -203,6 +238,26 @@ $('#recipeInnerHtml').on('click', "button",  function() {
   localStorage.setItem('recipes', JSON.stringify(savedRecipesArr))
 });
 
+=======
+
+  $(`#saveBtn0`).on('click', function () {
+    savedRecipesArr.push(document.getElementById(`panel${data[0].id}`).innerHTML)
+    console.log(savedRecipesArr);
+    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
+  });
+
+  $(`#saveBtn1`).on('click', function () {
+    savedRecipesArr.push(document.getElementById(`panel${data[1].id}`).innerHTML)
+    console.log(savedRecipesArr);
+    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
+  });
+
+  $(`#saveBtn2`).on('click', function () {
+    savedRecipesArr.push(document.getElementById(`panel${data[2].id}`).innerHTML)
+    console.log(savedRecipesArr);
+    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
+  });
+>>>>>>> feature/ingredient-icon
 
 
 // function to generate a map
