@@ -13,7 +13,6 @@ var savedRecipesArr = [];
 var savedRecipeCount = 0;
 $(document).foundation();
 
-<<<<<<< HEAD
 var loadRecipes = function(){
   var savedRecipes = localStorage.getItem('recipes');
   
@@ -31,39 +30,13 @@ var loadRecipes = function(){
     $('.savedRecipesContainer button').remove();
   }
   savedRecipes = [];
-=======
-var loadRecipes = function () {
-  savedRecipesArr = [];
-  savedRecipes = [];
-  var savedRecipes = localStorage.getItem('recipes');
-
-  if (!savedRecipes) {
-    return false;
-  }
-  else {
-    console.log("Saved tasks found!");
-    // parse into array of objects
-    savedRecipes = JSON.parse(savedRecipes);
-    // loop through savedRecipes array
-    for (var i = 0; i < savedRecipes.length; i++) {
-      $('<div>').attr('class', 'saved-recipe')
-        .html(savedRecipes[i])
-        .appendTo($('.savedRecipesContainer'));
-      $('.savedRecipesContainer button').remove();
-    }
-    savedRecipes = [];
->>>>>>> feature/ingredient-icon
   }
 };
 //saved recipes event listener
 $('#saveButton').on('click', loadRecipes);
 //closing modal event listener
-<<<<<<< HEAD
 
-$('#closeX').on('click', function(){
-=======
-$('#closeX').on('click', function () {
->>>>>>> feature/ingredient-icon
+$('#closeX').on('click', function() {
   $('.savedRecipesContainer').html('');
 })
 
@@ -225,7 +198,6 @@ var displayRecipes = function (data) {
   getRecipeSteps(recipeIdArr);
   getRecipeIngredients(recipeIdArr);
   recipeIdArr = [];
-<<<<<<< HEAD
   
   $(document).foundation();
 };
@@ -238,26 +210,6 @@ $('#recipeInnerHtml').on('click', "button",  function() {
   localStorage.setItem('recipes', JSON.stringify(savedRecipesArr))
 });
 
-=======
-
-  $(`#saveBtn0`).on('click', function () {
-    savedRecipesArr.push(document.getElementById(`panel${data[0].id}`).innerHTML)
-    console.log(savedRecipesArr);
-    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
-  });
-
-  $(`#saveBtn1`).on('click', function () {
-    savedRecipesArr.push(document.getElementById(`panel${data[1].id}`).innerHTML)
-    console.log(savedRecipesArr);
-    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
-  });
-
-  $(`#saveBtn2`).on('click', function () {
-    savedRecipesArr.push(document.getElementById(`panel${data[2].id}`).innerHTML)
-    console.log(savedRecipesArr);
-    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
-  });
->>>>>>> feature/ingredient-icon
 
 
 // function to generate a map
