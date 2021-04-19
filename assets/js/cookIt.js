@@ -59,7 +59,6 @@ $("#ingredientSubmit").click(function (event) {
   $("#ingredientsClear").removeClass("disabled").removeAttr("disabled");
   $("#ingredientSubmit").prop("disabled", true).addClass("disabled");
 
-  console.log(`Adding ingredient ${ingredient}`);
   fetchRecipes();
   event.preventDefault();
 });
@@ -90,11 +89,9 @@ function fetchRecipes() {
       finalURL = `${finalURL}${ingredientsArr[i]},+`;
     }
   }
-  console.log(finalURL);
   fetch(`${finalURL}&addRecipeInformation=true`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       displayRecipes(data);
     });
 }
@@ -108,9 +105,7 @@ var getRecipeSteps = function (arr) {
         return response.json();
       })
       .then(function (steps) {
-        console.log(steps);
         if (steps.length === 0) {
-          console.log("its empty");
           $(`#panel${arr[i]}`).append("<span> no cigar</span>");
           return;
         } else {
@@ -125,7 +120,6 @@ var getRecipeSteps = function (arr) {
 };
 
 var getRecipeIngredients = function (arr) {
-  console.log(arr);
   for (var i = 0; i < arr.length; i++) {
     fetch(
       `https://api.spoonacular.com/recipes/${arr[i]}/ingredientWidget.json?&apiKey=${apiKey}`
@@ -134,14 +128,10 @@ var getRecipeIngredients = function (arr) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         if (data.length === 0) {
-          console.log("its empty");
           $(`#panel${arr[i]}`).append("<span> no cigar</span>");
           return;
         } else {
-          console.log(data.ingredients[0].name)
-          console.log(data.ingredients.length)
           for (var j = 0; j < data.ingredients.length; j++) {
             $(`#panel${arr[j]} .ingredients-container`).append(
               `<li>${data.ingredients[j].amount.us.value} ${data.ingredients[j].amount.us.unit}  ${data.ingredients[j].name} 
@@ -205,8 +195,6 @@ var displayRecipes = function (data) {
 $('#recipeInnerHtml').on('click', "button",  function() {
   var id = $(this).attr("id");
   savedRecipesArr.push($(`#panel${id}`).html());
-  console.log('clicked');
-  console.log(savedRecipesArr);
   localStorage.setItem('recipes', JSON.stringify(savedRecipesArr))
 });
 
@@ -223,7 +211,6 @@ var generateMap = function () {
     var mapContainerEl = $("#mapContainer");
     // assign restaurant type option to a variable
     var restaurantType = $("#restaurantType").val();
-    console.log(restaurantType);
     // assign zipcode value to a variable
     zipCode = $("#zipCodeInput").val();
     // if switch is turned to restaurant. search and display map with restaurants of that type
@@ -231,7 +218,6 @@ var generateMap = function () {
       mapContainerEl.html(
         `<iframe width='450' height='250' frameborder='0' style='border:0' src= 'https://www.google.com/maps/embed/v1/search?key=AIzaSyBvqgE3J3k27e7smiiZAgKLa0bsGoNuHys&q=${restaurantType}+restaurant+near+${zipCode}&center=${lat},${long}&zoom=10' allowfullscreen> </iframe>`
       );
-      console.log(`restaurant type is: ${restaurantType}`);
     }
     // if switch is turned to grocery store. search and display map with nearby grocery stores
     else {
@@ -280,7 +266,6 @@ $("#grocery-or-restaurant").change(function () {
       $(restaurantSelectEl).append(optionsArr[i]);
     }
   } else {
-    console.log("Checkbox unchecked");
     $("#selectContainer").remove();
     $("#zipSubmitBtn").attr("value", "Find Stores");
   }
