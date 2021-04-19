@@ -36,7 +36,7 @@ var loadRecipes = function(){
 $('#saveButton').on('click', loadRecipes);
 //closing modal event listener
 
-$('#closeX').on('click', function(){
+$('#closeX').on('click', function() {
   $('.savedRecipesContainer').html('');
 })
 
