@@ -12,18 +12,140 @@
       integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
       crossorigin="anonymous"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
     <title>OnHandCooking</title>
   </head>
-  <body>
-    <h1>OnHandCooking</h1>
 
+
+  <body>
+    <header>
+      <div data-sticky-container>
+        <div data-sticky data-margin-top="0">
+          <div class="top-bar stacked-for-medium">
+            <h1>OnHandCooking<small> Let's search it</small></h1>
+            <div class="top-bar-right">
+              <ul class="menu stacked-for-medium">
+                <li >
+                  <button type="button" class="button warning btn tiny" id="saveButton" data-open="savedRecipesModal">
+                    Saved Recepies
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header> 
+    <main>
+      <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+          <!-- ingredient icons container -->
+          <div class="cell small-12 large-2">
+            <!-- List for holding ingredient icons -->
+            <div>
+              <ul class="no-bullet" id="ingredientList">
+                <!-- These are just for testing.  They will be dynamically created and added -->
+              </ul>
+            </div>
+          </div>
+          <!-- ingredients icons container -->
+          <div class="cell small-12 large-10">
+            <!-- Card -->
+            <div class="card">
+              <div class="card-divider">
+                <h2>Choose Your Ingredients</h2>
+              </div>
+              <div class="card-section">
+                <input
+                  type="text"
+                  placeholder="Enter an ingredient you have on hand:"
+                  id="ingredientName"
+                  name="ingredientName"
+                />
+                <div class="button-group stacked-for-small">
+                    <input  class=".submit button success btn small-only-expanded disabled" disabled value="Add Ingredient" id="ingredientSubmit"></input>
+                    <input type="submit" class="button alert btn small-only-expanded disabled round" disabled value="Clear Ingredients" id="ingredientsClear"></input>
+                </div>
+              </div>
+              
+            <!-- card end -->
+            <div class="grid-x recipes-container">
+              <div class="cell">
+                <!-- Placeholder for recipes -->
+                <div class="callout" id="recipeInnerHtml">
+                 ADD SOME INGREDIENTS SO WE CAN GET THIS <small>SHOW</small> ON THE ROAD
+                </div>
+              </div>
+            </div>
+            <div class="grid-x grid-margin-x">
+              <div class="cell small-4">
+                <span>
+                  Need help buying your ingredients!
+                  <br />Or<br />
+                  If you burnt it, find a restaurant!
+                </span>
+                <div class="switch" id="switchContainer">
+                  <input
+                    class="switch-input"
+                    id="grocery-or-restaurant"
+                    type="checkbox"
+                    name="grocery-or-restaurant"
+                  />
+                  <label class="switch-paddle" for="grocery-or-restaurant">
+                    <span class="show-for-sr">Grocery or Restaurant</span>
+                  </label>
+                </div>
+                <form id="zipCodeForm">
+                  <input
+                    type="text"
+                    id="zipCodeInput"
+                    name="zipCodeInput"
+                    placeholder="Enter Zipcode"
+                  />
+                  <input id="zipSubmitBtn" type="submit" class="button success" value="Find Stores" />
+                </form>
+              </div>
+              <div class="cell small-6">
+                <div id="mapContainer"></div>
+              </div>
+              <div class="cell small-2" id="driveSafeContainer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Container to hold recipes -->
+    </main>
+
+    <div class="reveal large" id="savedRecipesModal" data-reveal>
+      <div class="savedRecipesContainer"></div>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span id="closeX" aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <footer>
+      <!--we should maybe add are teams contact info at the footer-->
+      <div>
+        <h5>Thank you for cooking<small> or burning</small> with us!</h5>
+      </div>
+    </footer>
     <!-- Compressed JavaScript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
       integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
       crossorigin="anonymous"
     ></script>
+
     <script src="./assets/js/cookIt.js"></script>
   </body>
 </html>

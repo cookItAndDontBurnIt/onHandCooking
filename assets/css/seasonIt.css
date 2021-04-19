@@ -1,0 +1,23 @@
+body {
+  /* background-color: lightgray !important;
+  color: rebeccapurple !important; */
+}
+main {
+  padding: 80px 0;
+}
+
+footer {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.btn {
+  font-weight: bold;
+}
+
+#ingredients {
+}
+
+.card {
+  /* background-color: #ddc9b0 !important; */
+}
