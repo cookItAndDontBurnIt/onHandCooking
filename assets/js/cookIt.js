@@ -11,18 +11,15 @@ var savedRecipeCount = 0;
 $(document).foundation();
 
 var loadRecipes = function(){
-  savedRecipesArr = [];
-  savedRecipes = [];
   var savedRecipes = localStorage.getItem('recipes');
   
-  if (!savedRecipes) {
-    return false;
-  }
-  else{
-  console.log("Saved tasks found!");
   // parse into array of objects
   savedRecipes = JSON.parse(savedRecipes);
   // loop through savedRecipes array
+  if (savedRecipes === false){
+    return
+  }
+  else {
   for (var i = 0; i < savedRecipes.length; i++) {
     $('<div>').attr('class', 'saved-recipe')
       .html(savedRecipes[i])
@@ -35,9 +32,14 @@ var loadRecipes = function(){
 //saved recipes event listener
 $('#saveButton').on('click', loadRecipes);
 //closing modal event listener
+
 $('#closeX').on('click', function(){
   $('.savedRecipesContainer').html('');
-});
+})
+
+$('#savedRecipesModal').on('closed.zf.reveal', function(){
+  $('.savedRecipesContainer').html('');
+})
 
 //get value from ingredientName
 $("#ingredientSubmit").click(function (event) {
@@ -118,7 +120,7 @@ var displayRecipes = function (data) {
                         <h2> ${data[i].title} </h2>
                         <img class="thumbnail" src="${data[i].image}">
                         <div class="steps-container">  </div>
-                        <button type='button' class='button' id='saveBtn${i}'>Save Recipe</button> 
+                        <button type='button' class='button' id='${data[i].id}'>Save Recipe</button> 
                     </div>`;
     } else {
       recipeHTML = `${recipeHTML}
@@ -126,7 +128,7 @@ var displayRecipes = function (data) {
                         <h2> ${data[i].title} </h2>
                         <img class="thumbnail" src="${data[i].image}">
                         <div class="steps-container">  </div>
-                        <button type='button' class='button' id='saveBtn${i}'>Save Recipe</button> 
+                        <button type='button' class='button' id='${data[i].id}'>Save Recipe</button> 
                     </div>`;
     }
     recipeIdArr.push(data[i].id);
@@ -139,26 +141,18 @@ var displayRecipes = function (data) {
   getRecipeSteps(recipeIdArr);
   recipeIdArr = [];
   
-  $(`#saveBtn0`).on('click', function(){
-    savedRecipesArr.push(document.getElementById(`panel${data[0].id}`).innerHTML)
-    console.log(savedRecipesArr);
-    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
-  });
-
-  $(`#saveBtn1`).on('click', function(){
-    savedRecipesArr.push(document.getElementById(`panel${data[1].id}`).innerHTML)
-    console.log(savedRecipesArr);
-    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
-  });
-
-  $(`#saveBtn2`).on('click', function(){
-    savedRecipesArr.push(document.getElementById(`panel${data[2].id}`).innerHTML)
-    console.log(savedRecipesArr);
-    localStorage.setItem('recipes', JSON.stringify(savedRecipesArr));
-  });
-
   $(document).foundation();
 };
+
+$('#recipeInnerHtml').on('click', "button",  function() {
+  var id = $(this).attr("id");
+  savedRecipesArr.push($(`#panel${id}`).html());
+  console.log('clicked');
+  console.log(savedRecipesArr);
+  localStorage.setItem('recipes', JSON.stringify(savedRecipesArr))
+});
+
+
 
 // function to generate a map
 var generateMap = function () {
